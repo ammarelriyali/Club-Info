@@ -32,25 +32,36 @@ class OnboardingContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         controller = (storyboard?.instantiateViewController(identifier: "HomeNC") as! UINavigationController)
+        
         controller.modalTransitionStyle = .flipHorizontal
         controller.modalPresentationStyle = .fullScreen
+       
+       
+        slides.append(OnBoardingSilde(tille: "Leagues",description: "view leagues and players and add them to favorite ",image:UIImage(named:"PL")!))
+                      
+        slides.append(OnBoardingSilde(tille: "last update",description: "get upcoming events and result ",image:UIImage(named:"lastUpdate")!))
+                      
+        slides.append(OnBoardingSilde(tille: "Favorite",description: "add player and leagues to favorite",image:UIImage(named:"Fav")!))
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
         let defaults = UserDefaults.standard
-        
-        
+        let useTouchID = defaults.bool(forKey: "UseTouchID")
 
-        
-        slides.append(OnBoardingSilde(tille: "test 1",description: "test",image:UIImage(named:"test")!))
-                      
-        slides.append(OnBoardingSilde(tille: "test 2",description: "test",image:UIImage(named:"test")!))
-                      
-        slides.append(OnBoardingSilde(tille: "test3",description: "test",image:UIImage(named:"test")!))
-        
+        if(useTouchID){
+            present(controller, animated: false)
+        }
+        else{
+            defaults.set(true, forKey: "UseTouchID")
+            print("no")
+
+        }
     }
     
     @IBAction func nextView(_ sender: Any) {
         if currentPage == slides.count - 1 {
-            print("next")
-            
             present(controller, animated: true)
         }
         else {
@@ -81,8 +92,9 @@ extension OnboardingContentViewController: UICollectionViewDelegate,UICollection
         return CGSize(width: collectionView.frame.width-7, height: collectionView.frame.height)
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let width = scrollView.frame.width
+        let width = scrollView.frame.width-7
         currentPage = Int(scrollView.contentOffset.x / width )
+        print(currentPage)
         pageControl.currentPage=currentPage
     }
 }
