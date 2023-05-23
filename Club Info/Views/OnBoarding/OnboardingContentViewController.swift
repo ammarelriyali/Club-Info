@@ -12,7 +12,7 @@ class OnboardingContentViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
-    var controller :UINavigationController!
+    var controller :UITabBarController!
 
     var currentPage=0{
         didSet {
@@ -31,7 +31,7 @@ class OnboardingContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller = (storyboard?.instantiateViewController(identifier: "HomeNC") as! UINavigationController)
+        controller = (storyboard?.instantiateViewController(identifier: "TabBarC") as! UITabBarController)
         
         controller.modalTransitionStyle = .flipHorizontal
         controller.modalPresentationStyle = .fullScreen
@@ -55,7 +55,6 @@ class OnboardingContentViewController: UIViewController {
         }
         else{
             defaults.set(true, forKey: "UseTouchID")
-            print("no")
 
         }
     }
@@ -94,7 +93,6 @@ extension OnboardingContentViewController: UICollectionViewDelegate,UICollection
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width-7
         currentPage = Int(scrollView.contentOffset.x / width )
-        print(currentPage)
         pageControl.currentPage=currentPage
     }
 }
