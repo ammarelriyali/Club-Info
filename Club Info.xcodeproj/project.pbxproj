@@ -15,6 +15,9 @@
 		042207662A17923100E13386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042207642A17923100E13386 /* LaunchScreen.storyboard */; };
 		044F4B852A19844500475024 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044F4B842A19844500475024 /* OnBoardingCollectionViewCell.swift */; };
 		04657A042A17C5BC00064C1F /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04657A032A17C5BC00064C1F /* OnboardingContentViewController.swift */; };
+		046EBB362A1D114100AD9B15 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EBB352A1D114100AD9B15 /* HomeViewController.swift */; };
+		046EBB402A1D56D500AD9B15 /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EBB3F2A1D56D500AD9B15 /* LeaguesViewController.swift */; };
+		046EBB432A1D5A2300AD9B15 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EBB422A1D5A2300AD9B15 /* EndPoint.swift */; };
 		04A8FF4E2A18377B0053D7B3 /* Slides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8FF4D2A18377B0053D7B3 /* Slides.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		042207672A17923100E13386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044F4B842A19844500475024 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		04657A032A17C5BC00064C1F /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+		046EBB352A1D114100AD9B15 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		046EBB3F2A1D56D500AD9B15 /* LeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
+		046EBB422A1D5A2300AD9B15 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		04A8FF4D2A18377B0053D7B3 /* Slides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slides.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +68,7 @@
 		042207552A17923000E13386 /* Club Info */ = {
 			isa = PBXGroup;
 			children = (
+				046EBB412A1D59A100AD9B15 /* Utilities */,
 				04A8FF4B2A18374C0053D7B3 /* Models */,
 				04A8FF492A1835C50053D7B3 /* Views */,
 				042207562A17923000E13386 /* AppDelegate.swift */,
@@ -75,9 +82,35 @@
 			path = "Club Info";
 			sourceTree = "<group>";
 		};
+		046EBB372A1D4BBE00AD9B15 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				046EBB352A1D114100AD9B15 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		046EBB3E2A1D562F00AD9B15 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				046EBB3F2A1D56D500AD9B15 /* LeaguesViewController.swift */,
+			);
+			path = Leagues;
+			sourceTree = "<group>";
+		};
+		046EBB412A1D59A100AD9B15 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				046EBB422A1D5A2300AD9B15 /* EndPoint.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		04A8FF492A1835C50053D7B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				046EBB3E2A1D562F00AD9B15 /* Leagues */,
+				046EBB372A1D4BBE00AD9B15 /* Home */,
 				04A8FF4A2A1835D80053D7B3 /* OnBoarding */,
 			);
 			path = Views;
@@ -174,8 +207,11 @@
 				04A8FF4E2A18377B0053D7B3 /* Slides.swift in Sources */,
 				04657A042A17C5BC00064C1F /* OnboardingContentViewController.swift in Sources */,
 				042207572A17923000E13386 /* AppDelegate.swift in Sources */,
+				046EBB432A1D5A2300AD9B15 /* EndPoint.swift in Sources */,
+				046EBB402A1D56D500AD9B15 /* LeaguesViewController.swift in Sources */,
 				044F4B852A19844500475024 /* OnBoardingCollectionViewCell.swift in Sources */,
 				042207592A17923000E13386 /* SceneDelegate.swift in Sources */,
+				046EBB362A1D114100AD9B15 /* HomeViewController.swift in Sources */,
 				042207612A17923000E13386 /* Club_Info.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
