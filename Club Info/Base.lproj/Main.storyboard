@@ -32,7 +32,7 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xKQ-hA-0Xm">
                                 <rect key="frame" x="138" y="662.33333333333337" width="116" height="26"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="tintColor"/>
                             </pageControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ijc-WB-GYJ">
                                 <rect key="frame" x="0.0" y="59" width="393" height="583.33333333333337"/>
@@ -51,8 +51,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="590"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ubN-sF-i2t">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="459.66666666666669"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ubN-sF-i2t">
+                                                    <rect key="frame" x="16" y="16" width="361" height="443.66666666666669"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bt4-aY-XZN">
                                                     <rect key="frame" x="16" y="483.66666666666669" width="361" height="82.333333333333314"/>
@@ -74,13 +74,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="ubN-sF-i2t" firstAttribute="leading" secondItem="9ja-9A-jzS" secondAttribute="leading" id="3vV-p9-qRt"/>
+                                                <constraint firstItem="ubN-sF-i2t" firstAttribute="leading" secondItem="9ja-9A-jzS" secondAttribute="leading" constant="16" id="3vV-p9-qRt"/>
                                                 <constraint firstItem="bt4-aY-XZN" firstAttribute="top" secondItem="ubN-sF-i2t" secondAttribute="bottom" constant="24" id="BpC-Ju-MVi"/>
                                                 <constraint firstItem="bt4-aY-XZN" firstAttribute="leading" secondItem="9ja-9A-jzS" secondAttribute="leading" constant="16" id="NDv-4i-NGd"/>
                                                 <constraint firstAttribute="trailing" secondItem="bt4-aY-XZN" secondAttribute="trailing" constant="16" id="OnS-5H-PU8"/>
-                                                <constraint firstAttribute="trailing" secondItem="ubN-sF-i2t" secondAttribute="trailing" id="qLq-Cy-vKa"/>
+                                                <constraint firstAttribute="trailing" secondItem="ubN-sF-i2t" secondAttribute="trailing" constant="16" id="qLq-Cy-vKa"/>
                                                 <constraint firstAttribute="bottom" secondItem="bt4-aY-XZN" secondAttribute="bottom" constant="24" id="wtM-yN-QqM"/>
-                                                <constraint firstItem="ubN-sF-i2t" firstAttribute="top" secondItem="9ja-9A-jzS" secondAttribute="top" id="yU8-tW-M32"/>
+                                                <constraint firstItem="ubN-sF-i2t" firstAttribute="top" secondItem="9ja-9A-jzS" secondAttribute="top" constant="16" id="yU8-tW-M32"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="393" height="590"/>
@@ -159,6 +159,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
