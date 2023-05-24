@@ -11,14 +11,18 @@ class LeaguesViewController: UITableViewController {
     var type :HomeType!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        switch(type){
-        
-        case .none:
-            <#code#>
-        case .some(_):
-            <#code#>
+        let modelView=LeaguesViewModel(service: Service.getInstans())
+        switch(type!){
             
+        case HomeType.Football:
+            modelView.getFootball()
+            break
+        case .BasketBall:
+            break
+        case .Cricket:
+            break
+        case .Tennis:
+            break
         }
         
     }

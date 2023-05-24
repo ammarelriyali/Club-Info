@@ -45,7 +45,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = Int(collectionView.frame.width) / 2
         
-        let height = Int(collectionView.frame.height) / 2  
+        let height = Int(collectionView.frame.height) / 2
         
         return CGSize(width: width , height: height )
         
@@ -53,6 +53,23 @@ class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let secondViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesViewController") as! LeaguesViewController
+        switch (indexPath.item){
+        case 0:
+            secondViewController.type=HomeType.Football
+            break
+        case 1:
+            secondViewController.type=HomeType.BasketBall
+            break
+        case 2:
+            secondViewController.type=HomeType.Cricket
+            break
+        case 3:
+            secondViewController.type=HomeType.Tennis
+            break
+        default:
+            break
+        }
+        
         navigationController?.pushViewController(secondViewController, animated: true)
     }
     
