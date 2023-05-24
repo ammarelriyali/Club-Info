@@ -9,11 +9,22 @@ import Foundation
 
 class LeaguesViewModel {
     let service:Service
-    init(service: Service) {
+    let completion: (MyLeaguseResult?) -> Void
+    var x:Int = 0
+    var myLeaguseResult:MyLeaguseResult? = nil {
+        didSet{
+            completion(myLeaguseResult)
+        }
+    }
+    init(service: Service,completion: @escaping (MyLeaguseResult?) -> Void) {
         self.service = service
+        self.completion = completion
     }
     func getFootball(){
-        service.getFootballData()
+        service.getFootballLeaguesData(){
+            [weak self] data in
+            self?.myLeaguseResult = data
+        }
     }
     
 }

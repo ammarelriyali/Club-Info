@@ -9,9 +9,21 @@ import UIKit
 
 class LeaguesViewController: UITableViewController {
     var type :HomeType!
+    var arr:[League]?
+    var modelView : LeaguesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let modelView=LeaguesViewModel(service: Service.getInstans())
+        modelView=LeaguesViewModel(service: Service.getInstans()){ [weak self] data in
+            if let res = data{
+                self?.arr=res.result
+            }
+            else{
+                self?.showSimpleAlert()
+            }
+            self?.tableView.reloadData()
+        }
+        
+        
         switch(type!){
             
         case HomeType.Football:
@@ -26,6 +38,15 @@ class LeaguesViewController: UITableViewController {
         }
         
     }
+    func showSimpleAlert() {
+        let alert = UIAlertController(title: "Connnection faild ", message: "pleas check your connction",         preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+
+        }))
+
+          self.present(alert, animated: true, completion: nil)
+      }
     
 
     /*
