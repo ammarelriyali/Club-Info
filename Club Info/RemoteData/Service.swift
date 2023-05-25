@@ -12,11 +12,9 @@ class Service {
     static func getInstans()->Service{
         return instans
     }
-    
     private init(){}
     
     func getFootballLeaguesData(completion: @escaping ((MyLeaguseResult?) -> Void)) {
-        
         AF.request("https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=271a78edfebd2c9f55b7b3246ac1e24e6d2488f0819318b1b5f6a480ecadae06")
             .responseDecodable(of: MyLeaguseResult.self) { response in
                 switch response.result {

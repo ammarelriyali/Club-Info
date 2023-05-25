@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLk-hD-tvX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="-537"/>
+            <point key="canvasLocation" x="1946" y="-439"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="eAF-z1-FBM">
@@ -202,17 +202,41 @@
         <scene sceneID="aDJ-41-UGi">
             <objects>
                 <tableViewController storyboardIdentifier="LeaguesViewController" id="NEg-8r-eHC" customClass="LeaguesViewController" customModule="Club_Info" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="9LO-xx-Zv2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="8" estimatedSectionHeaderHeight="-1" sectionFooterHeight="8" estimatedSectionFooterHeight="-1" id="9LO-xx-Zv2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qCK-JW-RcA">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="0.0" reuseIdentifier="LeaguesCell" rowHeight="130" id="qCK-JW-RcA">
+                                <rect key="frame" x="0.0" y="50" width="393" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qCK-JW-RcA" id="axh-iZ-hAw">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BaF-9S-pZ5">
+                                            <rect key="frame" x="16" y="16" width="100" height="93"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="8UD-fV-2DX"/>
+                                                <constraint firstAttribute="height" constant="100" id="yQc-Ne-9mc"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lP4-wr-S6g">
+                                            <rect key="frame" x="132" y="16" width="225" height="106"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lP4-wr-S6g" firstAttribute="bottom" secondItem="BaF-9S-pZ5" secondAttribute="bottom" constant="13" id="AJC-k9-bFk"/>
+                                        <constraint firstAttribute="bottom" secondItem="BaF-9S-pZ5" secondAttribute="bottom" constant="21" id="HdZ-2i-3aL"/>
+                                        <constraint firstItem="lP4-wr-S6g" firstAttribute="top" secondItem="BaF-9S-pZ5" secondAttribute="top" id="ThH-jX-aIg"/>
+                                        <constraint firstItem="lP4-wr-S6g" firstAttribute="leading" secondItem="BaF-9S-pZ5" secondAttribute="trailing" constant="16" id="fnm-p9-V8H"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="lP4-wr-S6g" secondAttribute="trailing" constant="16" id="gWJ-Co-WYa"/>
+                                        <constraint firstItem="BaF-9S-pZ5" firstAttribute="top" secondItem="axh-iZ-hAw" secondAttribute="top" constant="16" id="kjI-ix-hUV"/>
+                                        <constraint firstItem="BaF-9S-pZ5" firstAttribute="leading" secondItem="axh-iZ-hAw" secondAttribute="leading" constant="16" id="t7Y-3g-MGn"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -224,7 +248,22 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1R-WS-xiM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3676" y="-1265"/>
+            <point key="canvasLocation" x="3675.5725190839694" y="-1265.4929577464789"/>
+        </scene>
+        <!--League View Controller-->
+        <scene sceneID="JmQ-Rf-qfe">
+            <objects>
+                <viewController id="EaP-fW-5z4" customClass="LeagueViewController" customModule="Club_Info" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OaY-0T-zOc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6xo-WL-Okj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KSf-0F-KDM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4437" y="-1261"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Fe-cm-gjr">
