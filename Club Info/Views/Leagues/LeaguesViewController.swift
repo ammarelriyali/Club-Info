@@ -11,14 +11,12 @@ import SDWebImage
 class LeaguesViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var type :HomeType!
-    var dataSource:[League]=[]
-    var arr:[League]=[]
+    
     var modelView : LeaguesViewModel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        arr = dataSource
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -26,17 +24,20 @@ class LeaguesViewController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-     
+        
         self.tableView.delegate=self
         self.tableView.dataSource=self
-        modelView=LeaguesViewModel(service: Service.getInstans()){ [weak self] data in
-            if let res = data{
-                self?.dataSource=res.result
-                self?.arr=self?.dataSource ?? []
-                self?.tableView.reloadData()
-            }
-            else{
-                showConnectionAlert(self)
+        modelView=LeaguesViewModel()
+        
+        modelView.isRetrievalData.bind(){
+            data in
+            if let data = data {
+                if(data){
+                    self.tableView.reloadData()
+                }
+                else{
+                    showConnectionAlert(self)
+                }
             }
             
         }
@@ -60,24 +61,30 @@ class LeaguesViewController: UITableViewController {
         }
     }
     
-  
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
+        return modelView.arr.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell",for: indexPath)
         
         
-        (cell.viewWithTag(2) as! UILabel).text = arr[indexPath.row].leagueName
-        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+        (cell.viewWithTag(2) as! UILabel).text = modelView.arr[indexPath.row].leagueName
+        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: modelView.arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
         (cell.viewWithTag(1) as! UIImageView).roundedImage()
         
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
+        league.idLeague = String (modelView.arr[indexPath.row].leagueKey ?? 0)
+        navigationController?.pushViewController(league, animated: true)
+        
     }
     
     
@@ -95,23 +102,10 @@ class LeaguesViewController: UITableViewController {
 extension LeaguesViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            // Perform the filtering
-            arr = dataSource.filter {
-                if let x = $0.leagueName {
-                   return x.lowercased().contains(searchText.lowercased())
-                }
-                else{
-                    return false
-                    
-                }
-            }
-        } else {
-            // If the search text is empty, show the entire data array
-            arr = dataSource
-        }
         
-        // Reload your table view to reflect the filtered data
+        
+        modelView.filterArr(searchController.searchBar.text)
+        
         tableView.reloadData()
     }
     

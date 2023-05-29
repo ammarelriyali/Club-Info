@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ClubsCell" customModule="Club_Info" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="217"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="217"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXF-8T-7aF">
+                        <rect key="frame" x="0.0" y="0.0" width="373" height="217"/>
+                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="PXF-8T-7aF" secondAttribute="trailing" id="H6L-va-fMS"/>
+                <constraint firstItem="PXF-8T-7aF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JmW-Bd-w1f"/>
+                <constraint firstItem="PXF-8T-7aF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jsx-au-vTQ"/>
+                <constraint firstAttribute="bottom" secondItem="PXF-8T-7aF" secondAttribute="bottom" id="l4i-j3-3VK"/>
+            </constraints>
+            <size key="customSize" width="373" height="217"/>
+            <point key="canvasLocation" x="116.79389312977099" y="54.577464788732399"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

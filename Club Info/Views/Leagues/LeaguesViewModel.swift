@@ -8,23 +8,42 @@
 import Foundation
 
 class LeaguesViewModel {
-    let service:Service
-    let completion: (MyLeaguseResult?) -> Void
-    var x:Int = 0
-    var myLeaguseResult:MyLeaguseResult? = nil {
-        didSet{
-            completion(myLeaguseResult)
-        }
-    }
-    init(service: Service,completion: @escaping (MyLeaguseResult?) -> Void) {
-        self.service = service
-        self.completion = completion
-    }
+    private let service:Service = Service.getInstans()
+    var isRetrievalData : Observable<Bool> = Observable(value: true)
+    var dataSource:[League] = []
+    var arr:[League] = []
+    
     func getFootball(){
         service.getFootballLeaguesData(){
-            [weak self] data in
-            self?.myLeaguseResult = data
+            [weak self] result in
+            switch result{
+            case .success(let data):
+                self?.dataSource = data ?? []
+                self?.arr = self?.dataSource ?? []
+                self?.isRetrievalData.value = true
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.isRetrievalData.value = false
+            }
+            
         }
+        
+    }
+    func filterArr(_ text:String? ){
+        if let searchText = text, !searchText.isEmpty {
+            arr = dataSource.filter {
+                if let x = $0.leagueName {
+                    return x.lowercased().contains(searchText.lowercased())
+                }
+                else{
+                    return false
+                }
+            }
+        } else {
+            // If the search text is empty, show the entire data array
+            arr = dataSource
+        }
+        
     }
     
 }
