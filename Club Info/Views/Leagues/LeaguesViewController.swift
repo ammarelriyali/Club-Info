@@ -27,7 +27,7 @@ class LeaguesViewController: UITableViewController {
         
         self.tableView.delegate=self
         self.tableView.dataSource=self
-        modelView=LeaguesViewModel()
+        modelView=LeaguesViewModel(service: Service())
         
         modelView.isRetrievalData.bind(){
             data in

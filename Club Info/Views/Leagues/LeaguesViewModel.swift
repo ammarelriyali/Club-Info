@@ -8,11 +8,14 @@
 import Foundation
 
 class LeaguesViewModel {
-    private let service:Service = Service.getInstans()
+    private let service:Service
     var isRetrievalData : Observable<Bool> = Observable(value: true)
     var dataSource:[League] = []
     var arr:[League] = []
     
+    init(service: Service) {
+        self.service = service
+    }
     func getFootball(){
         service.getFootballLeaguesData(){
             [weak self] result in

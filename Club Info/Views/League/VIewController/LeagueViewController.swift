@@ -24,6 +24,14 @@ class LeagueViewController: UIViewController {
         upComingEvent.dataSource = self
         upComingEvent.delegate   = self
         upComingEvent.register(UINib(nibName: "ComingEventCell", bundle: .main), forCellWithReuseIdentifier: "ComingEventCell")
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 100)
+        
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 5
+        
+        upComingEvent.collectionViewLayout = layout
         
         teams.dataSource = self
         teams.delegate   = self
