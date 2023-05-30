@@ -14,36 +14,78 @@ class LeaguesViewController: UITableViewController {
     
     var modelView : LeaguesViewModel!
     
+    var activityIndicator: UIActivityIndicatorView!
+    
+    var emptyMessageLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
         
+        setupSearchBar()
+        
+        setupNavigtionTitle()
+        
+        setupActivityIndicator()
+        
+        setupModelView()
         
         self.tableView.delegate=self
         self.tableView.dataSource=self
-        modelView=LeaguesViewModel(service: Service())
+        
+        
+        checkTypeToHitAPI()
+        
+        setupEmptyMessageLabel()
+        
+        
+    }
+    func setupActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    func setupEmptyMessageLabel() {
+        emptyMessageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+        emptyMessageLabel.text = "No items to display"
+        emptyMessageLabel.textColor = .gray
+        emptyMessageLabel.textAlignment = .center
+        emptyMessageLabel.isHidden = true
+        tableView.backgroundView = emptyMessageLabel
+    }
+    
+    func setupModelView() {
+        modelView=LeaguesViewModel(service: Service.getInstans())
         
         modelView.isRetrievalData.bind(){
-            data in
+            [weak self]data in
             if let data = data {
+                self?.activityIndicator.stopAnimating()
                 if(data){
-                    self.tableView.reloadData()
+                    if(self?.modelView.arr.isEmpty ?? false ){
+                        self?.emptyMessageLabel.isHidden = true
+                    }
+                    self?.tableView.reloadData()
                 }
                 else{
-                    showConnectionAlert(self)
+                    showConnectionAlert(self )
                 }
             }
             
         }
-        
-        checkTypeToHitAPI()
-        
+    }
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        definesPresentationContext = true
+    }
+    func setupNavigtionTitle() {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        navigationItem.title = "Leagues"
     }
     
     func checkTypeToHitAPI(){
@@ -80,6 +122,7 @@ class LeaguesViewController: UITableViewController {
         
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
         league.idLeague = String (modelView.arr[indexPath.row].leagueKey ?? 0)

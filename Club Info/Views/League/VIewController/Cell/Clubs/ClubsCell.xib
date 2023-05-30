@@ -4,32 +4,32 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ClubsCell" customModule="Club_Info" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXF-8T-7aF">
-                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ge-hW-rlO">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="5" y="5" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Fsn-4c-ZIc"/>
+                                    <constraint firstAttribute="height" constant="90" id="OWu-Ia-fsO"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBrownColor"/>
                         <constraints>
-                            <constraint firstItem="8Ge-hW-rlO" firstAttribute="leading" secondItem="PXF-8T-7aF" secondAttribute="leading" id="0hl-EF-xr7"/>
-                            <constraint firstItem="8Ge-hW-rlO" firstAttribute="top" secondItem="PXF-8T-7aF" secondAttribute="top" id="Vzw-Tw-2TM"/>
-                            <constraint firstAttribute="bottom" secondItem="8Ge-hW-rlO" secondAttribute="bottom" id="p51-KJ-gqY"/>
-                            <constraint firstAttribute="trailing" secondItem="8Ge-hW-rlO" secondAttribute="trailing" id="v3i-ke-chX"/>
+                            <constraint firstItem="8Ge-hW-rlO" firstAttribute="centerY" secondItem="PXF-8T-7aF" secondAttribute="centerY" id="86s-2J-a9F"/>
+                            <constraint firstItem="8Ge-hW-rlO" firstAttribute="centerX" secondItem="PXF-8T-7aF" secondAttribute="centerX" id="PnA-dw-e9o"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -45,12 +45,7 @@
             <connections>
                 <outlet property="image" destination="8Ge-hW-rlO" id="gxy-ne-aw8"/>
             </connections>
-            <point key="canvasLocation" x="116.79389312977099" y="54.577464788732399"/>
+            <point key="canvasLocation" x="116.03053435114504" y="54.225352112676056"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

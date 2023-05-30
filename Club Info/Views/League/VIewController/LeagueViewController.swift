@@ -14,18 +14,52 @@ class LeagueViewController: UIViewController {
     @IBOutlet weak var teams : UICollectionView!
     @IBOutlet weak var liveMatch : UICollectionView!
     
+    
+    @IBOutlet weak var teamsLabel: UILabel!
+    @IBOutlet weak var liveMatchlabel: UILabel!
+    @IBOutlet weak var labelUpcoming: UILabel!
+    @IBOutlet weak var indicatorLiveMatch: UIActivityIndicatorView!
+    @IBOutlet weak var indicatorTeams: UIActivityIndicatorView!
+    @IBOutlet weak var indicatorUpcomingEvent: UIActivityIndicatorView!
     var viewModel : LeagueModelView!
     var idLeague : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LeagueModelView(idOfLeague: "0" )
+        navigationItem.title = "League Details"
+        viewModel = LeagueModelView(service: Service.getInstans())
         
+        configUpCOmingEventFlow()
+        configUpCOmingEventData()
+        
+        configTeamsFlow()
+        configTeamsData()
+        
+        configLiveMatchFlow()
+        configLiveMatchData()
+        
+        setUpLabel()
+        showIndicator()
+
+
+    }
+    func setUpLabel(){
+        teamsLabel.isHidden = true
+        labelUpcoming.isHidden = true
+        liveMatchlabel.isHidden = true
+    }
+    func showIndicator(){
+        indicatorTeams.startAnimating()
+        indicatorUpcomingEvent.startAnimating()
+        indicatorLiveMatch.startAnimating()
+    }
+    
+    func configUpCOmingEventFlow(){
         upComingEvent.dataSource = self
         upComingEvent.delegate   = self
         upComingEvent.register(UINib(nibName: "ComingEventCell", bundle: .main), forCellWithReuseIdentifier: "ComingEventCell")
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 100)
+        layout.itemSize = CGSize(width: self.view.frame.width - 50, height: upComingEvent.frame.height - 10)
         
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
@@ -33,28 +67,117 @@ class LeagueViewController: UIViewController {
         
         upComingEvent.collectionViewLayout = layout
         
+    }
+    func configUpCOmingEventData(){
+        viewModel.getUpComingMatch(idLeague)
+        viewModel.isRetrievalDataUpComingMatch.bind(){
+            [weak self] state in
+            if let state = state {
+                self?.indicatorUpcomingEvent.stopAnimating()
+                self?.indicatorUpcomingEvent.isHidden = true
+                if(self?.viewModel.UpComingMatchArr.isEmpty ?? false && state){
+                    self?.labelUpcoming.isHidden = false
+                    print("requset coming event")
+                    
+                }
+                else if(state){
+                    print(self?.viewModel.UpComingMatchArr.count ?? 0)
+                    self?.upComingEvent.reloadData()
+                }
+                else{
+                    showConnectionAlert(self)
+                    print("error")
+                }
+                
+            }
+            
+        }
+    }
+    
+    func  configTeamsFlow(){
         teams.dataSource = self
         teams.delegate   = self
         teams.register(UINib(nibName: "ClubsCell", bundle: .main), forCellWithReuseIdentifier: "ClubsCell")
+      
+    }
+    func configTeamsData(){
+        viewModel.getTeams(idLeague)
+        viewModel.isRetrievalDataTeams.bind(){
+            [weak self] state in
+            if let state = state {
+                
+                self?.indicatorTeams.stopAnimating()
+                self?.indicatorTeams.isHidden = true
+                if(self?.viewModel.TeamsArr.isEmpty ?? false && state){
+                    self?.teamsLabel.isHidden = false
+                    print("requset teams")}
+                else if(state){
+                    print(self?.viewModel.TeamsArr.count ?? 0)
+                    self?.teams.reloadData()
+                }
+                else{
+                    showConnectionAlert(self)
+                    print("error")
+                }
+                
+            }
+            
+        }
+    }
+    
+    func  configLiveMatchFlow(){
         
         liveMatch.dataSource = self
         liveMatch.delegate   = self
         liveMatch.register(UINib(nibName: "ResultCell", bundle: .main), forCellWithReuseIdentifier: "ResultCell")
-
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.width - 10,height:  150)
+        
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 5
+        
+        liveMatch.collectionViewLayout = layout
     }
+    func configLiveMatchData(){
+        viewModel.getLiveMatch(idLeague)
+        viewModel.isRetrievalDataLiveMatch.bind(){
+            [weak self] state in
+            if let state = state {
+                self?.indicatorLiveMatch.stopAnimating()
+                self?.indicatorLiveMatch.isHidden = true
+                if(self?.viewModel.LiveMatchArr.isEmpty ?? false && state){
+                    print("requset live match")
+                    self?.liveMatchlabel.isHidden = false
+                }
+                else if(state){
+                    print(self?.viewModel.LiveMatchArr.count ?? 0)
+                    self?.liveMatch.reloadData()
+                }
+                else{
+                    showConnectionAlert(self)
+                    print("error")
+                }
+                
+            }
+            
+        }
+    }
+    
 }
 
 extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView  == upComingEvent){
-            return 4
+            return viewModel.UpComingMatchArr.count
         }
         else if (collectionView == liveMatch){
-            return 5
+            return viewModel.LiveMatchArr.count
         }
         else {
-            return 8
+            return viewModel.TeamsArr.count
         }
         
     }
@@ -62,19 +185,35 @@ extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         
-        let  cell : UICollectionViewCell!
+     
         
         if(collectionView  == upComingEvent){
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingEventCell", for: indexPath) as! ComingEventCell
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingEventCell", for: indexPath) as! ComingEventCell
+            cell.initializeCell(viewModel.UpComingMatchArr[indexPath.item])
+            return cell
+            
         }
         else if (collectionView == liveMatch){
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as!
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as!
             ResultCell
+            cell.initializeCell(viewModel.LiveMatchArr[indexPath.item])
+            return cell
         }
         else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClubsCell", for: indexPath) as! ClubsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClubsCell", for: indexPath) as! ClubsCell
+            
+            cell.initializeCell(viewModel.TeamsArr[indexPath.item].teamLogo ?? "")
+            return  cell
         }
-        return cell
+
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(collectionView == teams){
+            let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
+            league.idLeague = String (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
+            navigationController?.pushViewController(league, animated: true)
+        }
+        
+    }
 }

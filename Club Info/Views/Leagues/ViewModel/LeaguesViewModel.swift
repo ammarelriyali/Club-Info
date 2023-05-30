@@ -9,7 +9,7 @@ import Foundation
 
 class LeaguesViewModel {
     private let service:Service
-    var isRetrievalData : Observable<Bool> = Observable(value: true)
+    var isRetrievalData : Observable<Bool> = Observable(value: nil)
     var dataSource:[League] = []
     var arr:[League] = []
     

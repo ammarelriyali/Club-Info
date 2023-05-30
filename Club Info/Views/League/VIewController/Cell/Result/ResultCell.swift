@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class ResultCell: UICollectionViewCell {
     @IBOutlet weak var background: UIView!
     
@@ -20,6 +20,25 @@ class ResultCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        background.clipsToBounds = true
+        background.layer.cornerRadius = background.frame.height / 10
+        
+        imageFirstClub.borderImage()
+        
+        imageSecondClub.borderImage()
+        
+    }
+    func initializeCell(_ event:Event){
+        
+        imageFirstClub.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+        nameFirstClub.text = event.eventHomeTeam
+        timeMatch.text = event.eventTime
+        nameSecondClub.text = event.eventAwayTeam
+        imageSecondClub.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+        dateOfMatch.text = event.eventDate
+        resultMatch.text = event.eventFinalResult
+        
     }
 
 }

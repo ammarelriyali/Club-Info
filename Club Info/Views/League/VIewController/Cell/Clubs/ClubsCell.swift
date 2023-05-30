@@ -13,6 +13,14 @@ class ClubsCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        image.roundedImage()
+        
+        
+    }
+    func initializeCell(_ imageURL:String){
+        
+        image.sd_setImage(with: URL(string: imageURL),placeholderImage: UIImage(named: "lastUpdate"))
+        
     }
 
 }
