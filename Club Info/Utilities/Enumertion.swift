@@ -8,5 +8,6 @@
 import Foundation
 
 enum HomeType {
-    case Football , BasketBall , Cricket ,Tennis 
+    case Football , BasketBall , Cricket ,Tennis
 }
+

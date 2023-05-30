@@ -10,7 +10,7 @@ class MyLeaguseResult: Decodable{
     var success : Int
     var result : [League]
 }
-class League: Decodable {
+struct League: Decodable {
     var leagueKey: Int?
     var leagueName: String?
     var countryKey: Int?
