@@ -210,8 +210,9 @@ extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDele
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == teams){
-            let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
-            league.idLeague = String (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
+            let league = storyboard?.instantiateViewController(withIdentifier: "ClubInfoViewController") as! ClubInfoViewController
+            league.id = String(viewModel.TeamsArr[indexPath.item].teamKey ?? 0 )
+            (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
             navigationController?.pushViewController(league, animated: true)
         }
         

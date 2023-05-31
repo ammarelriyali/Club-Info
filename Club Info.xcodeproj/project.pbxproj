@@ -15,6 +15,7 @@
 		042207632A17923100E13386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 042207622A17923100E13386 /* Assets.xcassets */; };
 		042207662A17923100E13386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042207642A17923100E13386 /* LaunchScreen.storyboard */; };
 		044F4B852A19844500475024 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044F4B842A19844500475024 /* OnBoardingCollectionViewCell.swift */; };
+		04578E142A267BEE0050DD85 /* ClubInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04578E132A267BEE0050DD85 /* ClubInfoViewModel.swift */; };
 		045991642A1E66B8005D71FC /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045991632A1E66B8005D71FC /* Views.swift */; };
 		045991662A1E711E005D71FC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045991652A1E711E005D71FC /* Extension.swift */; };
 		046370C82A2644AE004FB7C4 /* ClubInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046370C72A2644AE004FB7C4 /* ClubInfoViewController.swift */; };
@@ -33,6 +34,7 @@
 		047794B62A23E03000CCE1B8 /* LeagueModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047794B52A23E03000CCE1B8 /* LeagueModelView.swift */; };
 		047794B82A23F44E00CCE1B8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047794B72A23F44E00CCE1B8 /* Observable.swift */; };
 		0477D70B2A1F9D3100808962 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477D70A2A1F9D3100808962 /* LeagueViewController.swift */; };
+		048B36BD2A269A8A00D7EB2A /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B36BC2A269A8A00D7EB2A /* DataBaseManager.swift */; };
 		04A8FF4E2A18377B0053D7B3 /* Slides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8FF4D2A18377B0053D7B3 /* Slides.swift */; };
 		04DB73EB2A25F03C006F83CB /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DB73EA2A25F03C006F83CB /* Team.swift */; };
 		04F17EB12A1D64910004A457 /* LeaguesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F17EB02A1D64910004A457 /* LeaguesViewModel.swift */; };
@@ -52,6 +54,7 @@
 		042207652A17923100E13386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		042207672A17923100E13386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044F4B842A19844500475024 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		04578E132A267BEE0050DD85 /* ClubInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoViewModel.swift; sourceTree = "<group>"; };
 		045991632A1E66B8005D71FC /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		045991652A1E711E005D71FC /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		046370C72A2644AE004FB7C4 /* ClubInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		047794B52A23E03000CCE1B8 /* LeagueModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueModelView.swift; sourceTree = "<group>"; };
 		047794B72A23F44E00CCE1B8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		0477D70A2A1F9D3100808962 /* LeagueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
+		048B36BC2A269A8A00D7EB2A /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		04A8FF4D2A18377B0053D7B3 /* Slides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slides.swift; sourceTree = "<group>"; };
 		04DB73EA2A25F03C006F83CB /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		04F17EB02A1D64910004A457 /* LeaguesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewModel.swift; sourceTree = "<group>"; };
@@ -129,7 +133,7 @@
 		042207552A17923000E13386 /* Club Info */ = {
 			isa = PBXGroup;
 			children = (
-				04F17EB22A1D64D60004A457 /* RemoteData */,
+				04F17EB22A1D64D60004A457 /* Data */,
 				046EBB412A1D59A100AD9B15 /* Utilities */,
 				04A8FF4B2A18374C0053D7B3 /* Models */,
 				04A8FF492A1835C50053D7B3 /* Views */,
@@ -165,6 +169,7 @@
 		046370CA2A2644C1004FB7C4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				04578E132A267BEE0050DD85 /* ClubInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -309,12 +314,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		04F17EB22A1D64D60004A457 /* RemoteData */ = {
+		04F17EB22A1D64D60004A457 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				04F17EB32A1D64EE0004A457 /* Service.swift */,
+				048B36BC2A269A8A00D7EB2A /* DataBaseManager.swift */,
 			);
-			path = RemoteData;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		4154898604B39975A8B9BE0D /* Frameworks */ = {
@@ -464,6 +470,8 @@
 				04DB73EB2A25F03C006F83CB /* Team.swift in Sources */,
 				046EBB402A1D56D500AD9B15 /* LeaguesViewController.swift in Sources */,
 				044F4B852A19844500475024 /* OnBoardingCollectionViewCell.swift in Sources */,
+				04578E142A267BEE0050DD85 /* ClubInfoViewModel.swift in Sources */,
+				048B36BD2A269A8A00D7EB2A /* DataBaseManager.swift in Sources */,
 				045991662A1E711E005D71FC /* Extension.swift in Sources */,
 				046370CE2A2644F4004FB7C4 /* PlayerTableViewCell.swift in Sources */,
 				042207592A17923000E13386 /* SceneDelegate.swift in Sources */,
