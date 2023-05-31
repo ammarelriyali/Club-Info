@@ -27,13 +27,12 @@ class ClubInfoViewController: UIViewController {
         
               tableVIew.register(UINib(nibName: "PlayerTableViewCell", bundle: .main), forCellReuseIdentifier: "PlayerTableViewCell")
 
-        viewModel = ClubInfoViewModel(service: Service.getInstans())
+        viewModel = ClubInfoViewModel(service: Service.getInstans(),database: DatabaseManager.getInstans())
         viewModel.getData(TeamID: id)
         
         viewModel.isRetrievalData.bind(){
             [weak self] state in
             if let state = state {
-                print("0000000000")
                 self?.indicator.stopAnimating()
                 self?.indicator.isHidden = true
                  if(state){
@@ -41,10 +40,17 @@ class ClubInfoViewController: UIViewController {
                      self?.imageClub.sd_setImage(with: URL(string: self?.viewModel.team.teamLogo ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
                      self?.clubName.text = self?.viewModel.team.teamName
                      self?.coachName.text = self?.viewModel.team.coaches?[0].coachName
+                     if(self?.viewModel.isSaved() ?? false ){
+                         self?.FavIcon.image = UIImage(systemName: "heart.fill")
+                         print("saved")
+                     }
+                     else {
+                         self?.FavIcon.image = UIImage(systemName: "heart")
+                         print("not saved")
+                     }
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -59,7 +65,16 @@ class ClubInfoViewController: UIViewController {
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        viewModel.addTeam()
+        if(viewModel.team.teamKey != 0){
+            if(viewModel.isSaved()){
+                viewModel.deleteTeam()
+                FavIcon.image = UIImage(systemName: "heart")
+            }
+            else {
+                viewModel.addTeam()
+                FavIcon.image = UIImage(systemName: "heart.fill")
+            }
+        }
     }
     
 

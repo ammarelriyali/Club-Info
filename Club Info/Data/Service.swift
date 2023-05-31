@@ -111,10 +111,10 @@ class Service {
         AF.request("https://apiv2.allsportsapi.com/football/",parameters: parameters)
             .validate()
             .responseDecodable(of: MyTeamResult.self) { response in
-                if let request = response.request,
-                        let urlString = request.url?.absoluteString {
-                        print(urlString)
-                    }
+//                if let request = response.request,
+//                        let urlString = request.url?.absoluteString {
+//                        print(urlString)
+//                    }
                 switch response.result {
                 case .success(let value):
                     completionHandler(.success(value.result))

@@ -77,16 +77,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorUpcomingEvent.isHidden = true
                 if(self?.viewModel.UpComingMatchArr.isEmpty ?? false && state){
                     self?.labelUpcoming.isHidden = false
-                    print("requset coming event")
                     
                 }
                 else if(state){
-                    print(self?.viewModel.UpComingMatchArr.count ?? 0)
                     self?.upComingEvent.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -110,14 +107,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorTeams.isHidden = true
                 if(self?.viewModel.TeamsArr.isEmpty ?? false && state){
                     self?.teamsLabel.isHidden = false
-                    print("requset teams")}
+                    
+                }
                 else if(state){
-                    print(self?.viewModel.TeamsArr.count ?? 0)
                     self?.teams.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -148,16 +144,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorLiveMatch.stopAnimating()
                 self?.indicatorLiveMatch.isHidden = true
                 if(self?.viewModel.LiveMatchArr.isEmpty ?? false && state){
-                    print("requset live match")
                     self?.liveMatchlabel.isHidden = false
                 }
                 else if(state){
-                    print(self?.viewModel.LiveMatchArr.count ?? 0)
                     self?.liveMatch.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }

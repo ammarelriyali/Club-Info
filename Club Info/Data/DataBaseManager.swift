@@ -8,11 +8,13 @@
 import Foundation
 import CoreData
 class DatabaseManager {
-    static let shared = DatabaseManager()
     private init(){
         
     }
-    
+    private static var instans = DatabaseManager()
+    static func getInstans()->DatabaseManager{
+        return instans
+    }
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Club_Info")
@@ -24,7 +26,6 @@ class DatabaseManager {
         return container
     }()
     
-    // MARK: - CRUD Operations
     
     func saveTeam(withData data: Team) {
         let managedObjectContext = persistentContainer.viewContext
@@ -37,7 +38,6 @@ class DatabaseManager {
         team.id = Int32(data.teamKey ?? 0)
         team.teamName = data.teamName
         team.teamLogo = data.teamLogo
-        
         
         saveContext()
     }

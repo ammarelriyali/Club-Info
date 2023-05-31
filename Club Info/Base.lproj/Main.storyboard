@@ -121,17 +121,36 @@
             </objects>
             <point key="canvasLocation" x="-1176.3358778625955" y="-537.32394366197184"/>
         </scene>
-        <!--View Controller-->
+        <!--Favouritues View Controller-->
         <scene sceneID="rot-Tm-mUJ">
             <objects>
-                <viewController id="HKk-kk-ClO" sceneMemberID="viewController">
+                <viewController id="HKk-kk-ClO" customClass="FavourituesViewController" customModule="Club_Info" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zjc-Qv-IFM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QDi-kk-bf6">
+                                <rect key="frame" x="0.0" y="83" width="393" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HKk-kk-ClO" id="Jga-q8-FDp"/>
+                                    <outlet property="delegate" destination="HKk-kk-ClO" id="4yD-I8-CfJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aj2-Bl-1Tg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QDi-kk-bf6" firstAttribute="leading" secondItem="aj2-Bl-1Tg" secondAttribute="leading" id="6As-vq-F9F"/>
+                            <constraint firstItem="QDi-kk-bf6" firstAttribute="top" secondItem="aj2-Bl-1Tg" secondAttribute="top" constant="24" id="8Nz-mb-I9z"/>
+                            <constraint firstItem="aj2-Bl-1Tg" firstAttribute="trailing" secondItem="QDi-kk-bf6" secondAttribute="trailing" id="DKT-Sh-fKr"/>
+                            <constraint firstItem="aj2-Bl-1Tg" firstAttribute="bottom" secondItem="QDi-kk-bf6" secondAttribute="bottom" constant="16" id="WcQ-RZ-zod"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="FmV-Wv-nuM"/>
+                    <connections>
+                        <outlet property="tableView" destination="QDi-kk-bf6" id="HN9-qB-4mT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLk-hD-tvX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -476,8 +495,8 @@
                                     <constraint firstAttribute="height" constant="50" id="dTn-92-6fT"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Coc-RO-Fiq">
-                                <rect key="frame" x="8" y="159.33333333333326" width="377" height="533.33333333333348"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Coc-RO-Fiq">
+                                <rect key="frame" x="8" y="159.33333333333331" width="377" height="533.33333333333348"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="dhG-aE-v6C" id="TwC-tA-whA"/>

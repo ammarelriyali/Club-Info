@@ -10,9 +10,11 @@ import Foundation
 class ClubInfoViewModel {
     
     private let service:Service
+    private let database : DatabaseManager
     var isRetrievalData : Observable<Bool> = Observable(value: nil)
     var team:Team = Team(teamKey: 0,teamLogo: "", teamName: "", players: [], coaches: [])
-    init(service: Service) {
+    init(service: Service, database: DatabaseManager) {
+        self.database = database
         self.service = service
     }
     func getData(TeamID id:String){
@@ -29,8 +31,19 @@ class ClubInfoViewModel {
             
         }
     }
+ 
    
     func addTeam(){
-        
+        database.saveTeam(withData: team)
+    }
+    
+    func deleteTeam(){
+        database.deleteTeam(withId: team.teamKey ?? 0 )
+    }
+    
+    func isSaved()->Bool{
+        return database.fetchAllTeams().contains(){
+            $0.teamKey == team.teamKey
+        }
     }
 }
