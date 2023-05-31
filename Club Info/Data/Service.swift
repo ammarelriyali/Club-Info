@@ -30,7 +30,6 @@ class Service {
                 case .success(let value):
                     completionHandler(.success(value.result))
                 case .failure(let error):
-                    print(response.error ?? "erorr in footbool leages")
                     completionHandler(.failure(error))
                 }
             }
@@ -94,6 +93,28 @@ class Service {
             .validate()
             .responseDecodable(of: MyTeamResult.self) { response in
                
+                switch response.result {
+                case .success(let value):
+                    completionHandler(.success(value.result))
+                case .failure(let error):
+                    print(response.error ?? "erorr in footbool team")
+                    completionHandler(.failure(error))
+                }
+            }
+    }
+    func getTeam(TeamID id : String,completionHandler :@escaping (Result<[Team]?, Error>) -> Void){
+        var parameters: [String: String] = [
+            "APIkey": url,
+            "met" : "Teams",
+            "teamId" : id
+        ]
+        AF.request("https://apiv2.allsportsapi.com/football/",parameters: parameters)
+            .validate()
+            .responseDecodable(of: MyTeamResult.self) { response in
+//                if let request = response.request,
+//                        let urlString = request.url?.absoluteString {
+//                        print(urlString)
+//                    }
                 switch response.result {
                 case .success(let value):
                     completionHandler(.success(value.result))

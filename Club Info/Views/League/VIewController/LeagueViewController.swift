@@ -77,16 +77,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorUpcomingEvent.isHidden = true
                 if(self?.viewModel.UpComingMatchArr.isEmpty ?? false && state){
                     self?.labelUpcoming.isHidden = false
-                    print("requset coming event")
                     
                 }
                 else if(state){
-                    print(self?.viewModel.UpComingMatchArr.count ?? 0)
                     self?.upComingEvent.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -110,14 +107,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorTeams.isHidden = true
                 if(self?.viewModel.TeamsArr.isEmpty ?? false && state){
                     self?.teamsLabel.isHidden = false
-                    print("requset teams")}
+                    
+                }
                 else if(state){
-                    print(self?.viewModel.TeamsArr.count ?? 0)
                     self?.teams.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -148,16 +144,13 @@ class LeagueViewController: UIViewController {
                 self?.indicatorLiveMatch.stopAnimating()
                 self?.indicatorLiveMatch.isHidden = true
                 if(self?.viewModel.LiveMatchArr.isEmpty ?? false && state){
-                    print("requset live match")
                     self?.liveMatchlabel.isHidden = false
                 }
                 else if(state){
-                    print(self?.viewModel.LiveMatchArr.count ?? 0)
                     self?.liveMatch.reloadData()
                 }
                 else{
                     showConnectionAlert(self)
-                    print("error")
                 }
                 
             }
@@ -210,8 +203,9 @@ extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDele
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == teams){
-            let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
-            league.idLeague = String (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
+            let league = storyboard?.instantiateViewController(withIdentifier: "ClubInfoViewController") as! ClubInfoViewController
+            league.id = String(viewModel.TeamsArr[indexPath.item].teamKey ?? 0 )
+            (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
             navigationController?.pushViewController(league, animated: true)
         }
         

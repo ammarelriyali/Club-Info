@@ -17,21 +17,22 @@ struct Team: Decodable {
     var teamLogo: String?
     var teamName: String?
     var players : [Player]?
+    var coaches : [Coach]?
     
-
-     enum CodingKeys: String, CodingKey {
+    
+    enum CodingKeys: String, CodingKey {
         case teamKey = "team_key"
         case teamLogo = "team_logo"
         case teamName = "team_name"
         case players = "players"
-   
+        case coaches = "coaches"
     }
- 
 }
+
 struct Player: Decodable {
     let playerKey: Int?
     let playerName: String?
-    let playerImage: URL?
+    let playerImage: String?
     
     enum CodingKeys: String, CodingKey {
         case playerKey = "player_key"
@@ -40,3 +41,14 @@ struct Player: Decodable {
     }
 }
 
+struct Coach : Decodable{
+    let coachName: String?
+    let coachCountry: String?
+    let coachAge: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case coachName = "coach_name"
+        case coachCountry = "coach_country"
+        case coachAge = "coach_age"
+    }
+}
