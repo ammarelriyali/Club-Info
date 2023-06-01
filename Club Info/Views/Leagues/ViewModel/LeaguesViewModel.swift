@@ -9,16 +9,22 @@ import Foundation
 
 class LeaguesViewModel {
     private let service:Service
-    var isRetrievalData : Observable<Bool> = Observable(value: nil)
-    var dataSource:[League] = []
-    var arr:[League] = []
+    var isRetrievalData : Observable<Bool>
+    var dataSource:[League]
+    var arr:[League]
+    var queryItems: [URLQueryItem]
     
     init(service: Service) {
         self.service = service
+        isRetrievalData = Observable(value: nil)
+        dataSource = []
+        arr = []
+        queryItems = [URLQueryItem(name: "met", value: "Leagues")]
     }
-    func getFootball(){
-        service.getFootballLeaguesData(){
-            [weak self] result in
+    
+    func getData(type:SportType){
+        service.fetchData(for: type, queryItems: queryItems ){
+            [weak self] (result: Result<[League]?, Error>) in
             switch result{
             case .success(let data):
                 self?.dataSource = data ?? []
@@ -32,6 +38,7 @@ class LeaguesViewModel {
         }
         
     }
+   
     func filterArr(_ text:String? ){
         if let searchText = text, !searchText.isEmpty {
             arr = dataSource.filter {

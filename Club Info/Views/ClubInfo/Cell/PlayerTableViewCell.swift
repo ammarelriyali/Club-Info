@@ -10,13 +10,14 @@ import UIKit
 class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var imagePlayer: UIImageView!
     
+    @IBOutlet weak var backgroundPlayer: UIView!
     @IBOutlet weak var namePlayer: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         imagePlayer.roundedImage()
-        
-        // Initialization code
+        backgroundPlayer.layer.cornerRadius = backgroundPlayer.frame.size.width/10
+        backgroundPlayer.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +29,13 @@ class PlayerTableViewCell: UITableViewCell {
         imagePlayer.sd_setImage(with: URL(string: player.playerImage ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
         
         namePlayer.text=player.playerName
+    }
+    func initializeCellTeam(_ team:Team){
+        
+        imagePlayer.sd_setImage(with: URL(string: team.teamLogo ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
+        
+        namePlayer.text = team.teamName
+        
     }
     
 }

@@ -7,13 +7,6 @@
 
 import Foundation
 
-class MyEventResult: Decodable{
-    
-    var success : Int
-    
-    var result : [Event]?
-    
-}
 
 struct Event: Decodable {
     

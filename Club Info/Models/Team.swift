@@ -8,10 +8,7 @@
 import Foundation
 
 
-class MyTeamResult: Decodable{
-    var success : Int?
-    var result : [Team]?
-}
+
 struct Team: Decodable {
     var teamKey: Int?
     var teamLogo: String?

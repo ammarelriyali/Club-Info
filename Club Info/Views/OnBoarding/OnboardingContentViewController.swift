@@ -37,7 +37,7 @@ class OnboardingContentViewController: UIViewController {
         controller.modalPresentationStyle = .fullScreen
        
        
-        slides.append(OnBoardingSilde(tille: "Leagues",description: "view leagues and players and add them to favorite ",image:UIImage(named:"PL")!))
+        slides.append(OnBoardingSilde(tille: "Leagues",description: "view leagues,teams add events",image:UIImage(named:"PL")!))
                       
         slides.append(OnBoardingSilde(tille: "last update",description: "get upcoming events and result ",image:UIImage(named:"lastUpdate")!))
                       
@@ -46,7 +46,7 @@ class OnboardingContentViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+
         let defaults = UserDefaults.standard
         let useTouchID = defaults.bool(forKey: "UseTouchID")
 

@@ -28,13 +28,13 @@ class ComingEventCell: UICollectionViewCell {
         
         
     }
-    func initializeCell(_ event:Event){
+    func initializeCell(_ event:Event,Image name:String){
         
-        imageFirstClub.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+        imageFirstClub.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""),placeholderImage: UIImage(named: name))
         nameFirstClub.text = event.eventHomeTeam
         timeMatch.text = event.eventTime
         nameSecondClub.text = event.eventAwayTeam
-        imageSecondClub.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+        imageSecondClub.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""),placeholderImage: UIImage(named:  name))
         dateOfMatch.text = event.eventDate
         
     }

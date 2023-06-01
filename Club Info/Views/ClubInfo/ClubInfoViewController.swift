@@ -27,7 +27,7 @@ class ClubInfoViewController: UIViewController {
         
               tableVIew.register(UINib(nibName: "PlayerTableViewCell", bundle: .main), forCellReuseIdentifier: "PlayerTableViewCell")
 
-        viewModel = ClubInfoViewModel(service: Service.getInstans(),database: DatabaseManager.getInstans())
+        viewModel = ClubInfoViewModel(service: Service.instans,database: DatabaseManager.getInstans())
         viewModel.getData(TeamID: id)
         
         viewModel.isRetrievalData.bind(){
@@ -37,16 +37,14 @@ class ClubInfoViewController: UIViewController {
                 self?.indicator.isHidden = true
                  if(state){
                     self?.tableVIew.reloadData()
-                     self?.imageClub.sd_setImage(with: URL(string: self?.viewModel.team.teamLogo ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
+                     self?.imageClub.sd_setImage(with: URL(string: self?.viewModel.team.teamLogo ??  ""),placeholderImage: UIImage(named: "football"))
                      self?.clubName.text = self?.viewModel.team.teamName
                      self?.coachName.text = self?.viewModel.team.coaches?[0].coachName
                      if(self?.viewModel.isSaved() ?? false ){
                          self?.FavIcon.image = UIImage(systemName: "heart.fill")
-                         print("saved")
                      }
                      else {
                          self?.FavIcon.image = UIImage(systemName: "heart")
-                         print("not saved")
                      }
                 }
                 else{

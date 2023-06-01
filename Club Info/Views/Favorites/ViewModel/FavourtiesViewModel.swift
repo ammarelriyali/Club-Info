@@ -13,13 +13,14 @@ var arr:[Team] = []
 init( database: DatabaseManager) {
     self.database = database
 }
-func getData(TeamID id:String){
+func getData(){
     arr = database.fetchAllTeams()
     isRetrievalData.value = true
 }
 
     func deleteTeam(id : Int){
         database.deleteTeam(withId: id )
+        getData()
 }
 
 }
