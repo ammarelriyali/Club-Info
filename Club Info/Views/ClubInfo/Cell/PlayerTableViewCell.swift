@@ -15,8 +15,8 @@ class PlayerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         imagePlayer.roundedImage()
+        imagePlayer.borderImage()
         
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +28,13 @@ class PlayerTableViewCell: UITableViewCell {
         imagePlayer.sd_setImage(with: URL(string: player.playerImage ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
         
         namePlayer.text=player.playerName
+    }
+    func initializeCellTeam(_ team:Team){
+        
+        imagePlayer.sd_setImage(with: URL(string: team.teamLogo ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
+        
+        namePlayer.text = team.teamName
+        
     }
     
 }

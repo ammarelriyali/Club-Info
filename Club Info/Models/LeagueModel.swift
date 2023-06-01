@@ -6,10 +6,7 @@
 //
 
 import Foundation
-class MyLeaguseResult: Decodable{
-    var success : Int
-    var result : [League]
-}
+
 struct League: Decodable {
     var leagueKey: Int?
     var leagueName: String?

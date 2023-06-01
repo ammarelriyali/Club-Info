@@ -18,8 +18,11 @@ class ClubInfoViewModel {
         self.service = service
     }
     func getData(TeamID id:String){
-        service.getTeam(TeamID:id){
-            [weak self] result in
+    var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "met", value: "Teams"))
+        queryItems.append(URLQueryItem(name: "teamId", value: id))
+        service.fetchData(for: SportType.Football, queryItems: queryItems){
+            [weak self] (result: Result<[Team]?, Error>) in
             switch result{
             case .success(let data):
                 self?.team = data?[0] ??  Team(teamKey: 0,teamLogo: "", teamName: "", players: [], coaches: [])

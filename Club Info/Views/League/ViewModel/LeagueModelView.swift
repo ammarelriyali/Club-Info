@@ -9,23 +9,42 @@ import Foundation
 
 class LeagueModelView{
     private let service:Service
-    var isRetrievalDataUpComingMatch : Observable<Bool> = Observable(value: nil)
-    var UpComingMatchArr:[Event] = []
+    var isRetrievalDataUpComingMatch : Observable<Bool>
+    var UpComingMatchArr:[Event]
     
-      var isRetrievalDataTeams : Observable<Bool> = Observable(value: nil)
-    var TeamsArr:[Team] = []
+    var isRetrievalDataTeams : Observable<Bool>
+    var TeamsArr:[Team]
     
-      var isRetrievalDataLiveMatch : Observable<Bool> = Observable(value: nil)
-    var LiveMatchArr:[Event] = []
+    var isRetrievalDataLiveMatch : Observable<Bool>
+    var LiveMatchArr:[Event]
     
-    init(service: Service) {
+    var type:SportType
+   
+    
+    init(service: Service , type:SportType) {
         self.service = service
-
+        isRetrievalDataUpComingMatch = Observable(value: nil)
+        UpComingMatchArr = []
+        
+        isRetrievalDataTeams  = Observable(value: nil)
+        TeamsArr = []
+        
+        isRetrievalDataLiveMatch  = Observable(value: nil)
+        LiveMatchArr = []
+        
+        self.type = type
     }
-
-    func getUpComingMatch(_ id:String){
-        service.getEvent(StartDate: getStratDate(), EndDate: getEndDate(), leagueId:id){
-            [weak self] result in
+    
+    func getUpComingMatch(_ id:String ){
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "met", value: "Fixtures"))
+        queryItems.append(URLQueryItem(name: "from", value: getStratDate()))
+        queryItems.append(URLQueryItem(name: "to", value: getEndDate()))
+        queryItems.append(URLQueryItem(name: "timezone", value: "Africa/Cairo"))
+        queryItems.append(URLQueryItem(name: "leagueId", value: id))
+        
+        service.fetchData(for: type, queryItems: queryItems){
+            [weak self] (result: Result<[Event]?, Error>) in
             switch result{
             case .success(let data):
                 self?.UpComingMatchArr = data ?? []
@@ -38,8 +57,12 @@ class LeagueModelView{
         }
     }
     func getLiveMatch(_ id:String){
-        service.getLiveEvent( leagueId:id){
-            [weak self] result in
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "met", value: "Livescore"))
+        queryItems.append(URLQueryItem(name: "timezone", value: "Africa/Cairo"))
+        queryItems.append(URLQueryItem(name: "leagueId", value: id))
+        service.fetchData(for: type, queryItems: queryItems){
+            [weak self] (result: Result<[Event]?, Error>) in
             switch result{
             case .success(let data):
                 self?.LiveMatchArr = data ?? []
@@ -52,8 +75,12 @@ class LeagueModelView{
         }
     }
     func getTeams(_ id:String){
-        service.getTeams(leagueId:id){
-            [weak self] result in
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "met", value: "Teams"))
+        queryItems.append(URLQueryItem(name: "leagueId", value: id))
+        
+        service.fetchData(for: type, queryItems: queryItems){
+            [weak self] (result: Result<[Team]?, Error>) in
             switch result{
             case .success(let data):
                 self?.TeamsArr = data ?? []
@@ -65,12 +92,15 @@ class LeagueModelView{
             
         }
     }
+     func getTeamsTinnes(){
+                isRetrievalDataTeams.value = true
+    }
     
-   
-   private func getStratDate()-> String {
+    
+    private func getStratDate()-> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-       dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.locale = Locale(identifier: "en_US")
         let currentDate = Date()
         let formattedDate = dateFormatter.string(from: currentDate)
         return formattedDate
@@ -78,17 +108,17 @@ class LeagueModelView{
     private func getEndDate()-> String {
         let calendar = Calendar.current
         let currentDate = Date()
-
+        
         let modifiedDate = calendar.date(byAdding: .year, value: 1, to: currentDate)
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "en_US")
-
-
+        
+        
         if let modifiedDate = modifiedDate {
             let formattedDate = dateFormatter.string(from: modifiedDate)
-           return formattedDate
+            return formattedDate
         }
         return dateFormatter.string(from: currentDate)
     }

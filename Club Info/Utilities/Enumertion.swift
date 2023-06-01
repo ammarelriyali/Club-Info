@@ -7,7 +7,24 @@
 
 import Foundation
 
-enum HomeType {
-    case Football , BasketBall , Cricket ,Tennis
+enum SportType {
+    case Football
+    case BasketBall
+    case Cricket
+    case Tennis
+    
+    var path : String {
+        
+        switch self {
+        case .Football :
+            return "football"
+        case .BasketBall:
+            return "basketball"
+        case .Cricket:
+            return "cricket"
+        case .Tennis:
+            return "tennis"
+        }
+    }
 }
 

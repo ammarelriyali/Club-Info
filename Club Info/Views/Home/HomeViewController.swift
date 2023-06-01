@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout ,UICollectionViewDataSource{
+class HomeViewController: UIViewController ,UICollectionViewDataSource{
     @IBOutlet weak var collectionView: UICollectionView!
     
     let numberOFItem = 4
@@ -19,7 +19,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout 
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        // Generate or fetch the data for the collection view
+        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
     }
     
@@ -41,30 +41,23 @@ class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout 
         return cell
     }
     
-    // Implement the delegate method to set the size of each cell dynamically
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = Int(collectionView.frame.width) / 2
-        
-        let height = Int(collectionView.frame.height) / 2
-        
-        return CGSize(width: width , height: height )
-        
-    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let secondViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesViewController") as! LeaguesViewController
         switch (indexPath.item){
         case 0:
-            secondViewController.type=HomeType.Football
+            secondViewController.type=SportType.Football
             break
         case 1:
-            secondViewController.type=HomeType.BasketBall
+            secondViewController.type=SportType.BasketBall
             break
         case 2:
-            secondViewController.type=HomeType.Cricket
+            secondViewController.type=SportType.Cricket
             break
         case 3:
-            secondViewController.type=HomeType.Tennis
+            secondViewController.type=SportType.Tennis
             break
         default:
             break
@@ -74,4 +67,22 @@ class HomeViewController: UIViewController , UICollectionViewDelegateFlowLayout 
     }
     
     // Other methods and logic
+}
+extension HomeViewController : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+ 
+        return UIEdgeInsets(top: 1.0, left: 8.0, bottom: 1.0, right: 8.0)
+    }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        let itemWidth = view.frame.width / 2 - (layout.minimumInteritemSpacing + 20)
+        let itemHeight = view.frame.height / 3
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
 }

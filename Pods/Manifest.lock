@@ -1,22 +1,26 @@
 PODS:
   - Alamofire (5.7.1)
+  - ReachabilitySwift (5.0.0)
   - SDWebImage (5.15.8):
     - SDWebImage/Core (= 5.15.8)
   - SDWebImage/Core (5.15.8)
 
 DEPENDENCIES:
   - Alamofire
+  - ReachabilitySwift
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ReachabilitySwift
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: cb032eba469c54e0000e78bcb0a13cdde0a52798
 
-PODFILE CHECKSUM: c79a7024295b9720699cb33aa9fffd264ae689a3
+PODFILE CHECKSUM: d5793723dcc3f238475f3c86f8e117624ce5f76e
 
 COCOAPODS: 1.12.1
