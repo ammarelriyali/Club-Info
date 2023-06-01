@@ -8,5 +8,6 @@ target 'Club Info' do
   # Pods for Club Info
   pod 'Alamofire'
   pod 'SDWebImage', '~> 5.0'
+  pod 'ReachabilitySwift'
 
 end

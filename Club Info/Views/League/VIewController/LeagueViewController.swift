@@ -23,11 +23,12 @@ class LeagueViewController: UIViewController {
     @IBOutlet weak var indicatorUpcomingEvent: UIActivityIndicatorView!
     var viewModel : LeagueModelView!
     var idLeague : String!
+    var  type : SportType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "League Details"
-        viewModel = LeagueModelView(service: Service.getInstans())
+        viewModel = LeagueModelView(service: Service.instans,type: type)
         
         configUpCOmingEventFlow()
         configUpCOmingEventData()
@@ -40,8 +41,8 @@ class LeagueViewController: UIViewController {
         
         setUpLabel()
         showIndicator()
-
-
+        
+        
     }
     func setUpLabel(){
         teamsLabel.isHidden = true
@@ -95,10 +96,15 @@ class LeagueViewController: UIViewController {
         teams.dataSource = self
         teams.delegate   = self
         teams.register(UINib(nibName: "ClubsCell", bundle: .main), forCellWithReuseIdentifier: "ClubsCell")
-      
+        
     }
     func configTeamsData(){
-        viewModel.getTeams(idLeague)
+        if(type == SportType.Tennis){
+            viewModel.getTeamsTinnes()
+            teamsLabel.text = "No Player found"
+        }
+        else {
+            viewModel.getTeams(idLeague)}
         viewModel.isRetrievalDataTeams.bind(){
             [weak self] state in
             if let state = state {
@@ -176,37 +182,47 @@ extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
         
-     
+        
+        
         
         if(collectionView  == upComingEvent){
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingEventCell", for: indexPath) as! ComingEventCell
-            cell.initializeCell(viewModel.UpComingMatchArr[indexPath.item])
+            cell.initializeCell(viewModel.UpComingMatchArr[indexPath.item],Image: type.path)
             return cell
             
         }
         else if (collectionView == liveMatch){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as!
             ResultCell
-            cell.initializeCell(viewModel.LiveMatchArr[indexPath.item])
+            cell.initializeCell(viewModel.LiveMatchArr[indexPath.item],Image: type.path)
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClubsCell", for: indexPath) as! ClubsCell
             
-            cell.initializeCell(viewModel.TeamsArr[indexPath.item].teamLogo ?? "")
+            cell.initializeCell(viewModel.TeamsArr[indexPath.item].teamLogo ?? "",Image: type.path)
             return  cell
         }
-
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == teams){
-            let league = storyboard?.instantiateViewController(withIdentifier: "ClubInfoViewController") as! ClubInfoViewController
-            league.id = String(viewModel.TeamsArr[indexPath.item].teamKey ?? 0 )
-            (viewModel.TeamsArr[indexPath.row].teamKey ?? 0)
-            navigationController?.pushViewController(league, animated: true)
+            if(type == SportType.Football){
+                let league = storyboard?.instantiateViewController(withIdentifier: "ClubInfoViewController") as! ClubInfoViewController
+                league.id = String(viewModel.TeamsArr[indexPath.item].teamKey ?? 0 )
+                navigationController?.pushViewController(league, animated: true)
+            }
+            else {
+                
+                let alert = UIAlertController(title: "No details for Teams", message: "can't open any team details",         preferredStyle: UIAlertController.Style.alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+                    
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
     }

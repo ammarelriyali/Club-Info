@@ -10,7 +10,7 @@ import SDWebImage
 
 class LeaguesViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
-    var type :HomeType!
+    var type : SportType!
     
     var modelView : LeaguesViewModel!
     
@@ -34,7 +34,7 @@ class LeaguesViewController: UITableViewController {
         self.tableView.dataSource=self
         
         
-        checkTypeToHitAPI()
+        modelView.getData(type: type)
         
         setupEmptyMessageLabel()
         
@@ -57,7 +57,7 @@ class LeaguesViewController: UITableViewController {
     }
     
     func setupModelView() {
-        modelView=LeaguesViewModel(service: Service.getInstans())
+        modelView=LeaguesViewModel(service: Service.instans)
         
         modelView.isRetrievalData.bind(){
             [weak self]data in
@@ -88,20 +88,6 @@ class LeaguesViewController: UITableViewController {
         navigationItem.title = "Leagues"
     }
     
-    func checkTypeToHitAPI(){
-        switch(type!){
-            
-        case HomeType.Football:
-            modelView.getFootball()
-            break
-        case .BasketBall:
-            break
-        case .Cricket:
-            break
-        case .Tennis:
-            break
-        }
-    }
     
     
     
@@ -117,7 +103,8 @@ class LeaguesViewController: UITableViewController {
         
         
         (cell.viewWithTag(2) as! UILabel).text = modelView.arr[indexPath.row].leagueName
-        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: modelView.arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+
+        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: modelView.arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: type.path))
         (cell.viewWithTag(1) as! UIImageView).roundedImage()
         
         return cell
@@ -126,6 +113,7 @@ class LeaguesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let league = storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
         league.idLeague = String (modelView.arr[indexPath.row].leagueKey ?? 0)
+        league.type = type
         navigationController?.pushViewController(league, animated: true)
         
     }
