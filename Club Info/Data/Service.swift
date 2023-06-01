@@ -7,7 +7,7 @@
 
 import Foundation
 import Alamofire
-class Service {
+class Service : ServiceProtocol {
     private let APIKey : String!
     private let baseUrl:URL!
     static var instans = Service()

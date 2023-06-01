@@ -10,13 +10,14 @@ import UIKit
 class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var imagePlayer: UIImageView!
     
+    @IBOutlet weak var backgroundPlayer: UIView!
     @IBOutlet weak var namePlayer: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         imagePlayer.roundedImage()
-        imagePlayer.borderImage()
-        
+        backgroundPlayer.layer.cornerRadius = backgroundPlayer.frame.size.width/10
+        backgroundPlayer.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

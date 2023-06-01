@@ -103,7 +103,8 @@ class LeaguesViewController: UITableViewController {
         
         
         (cell.viewWithTag(2) as! UILabel).text = modelView.arr[indexPath.row].leagueName
-        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: modelView.arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: "lastUpdate"))
+
+        (cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: modelView.arr[indexPath.row].leagueLogo ?? ""),placeholderImage: UIImage(named: type.path))
         (cell.viewWithTag(1) as! UIImageView).roundedImage()
         
         return cell

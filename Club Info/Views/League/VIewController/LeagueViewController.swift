@@ -189,20 +189,20 @@ extension LeagueViewController: UICollectionViewDataSource ,UICollectionViewDele
         if(collectionView  == upComingEvent){
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingEventCell", for: indexPath) as! ComingEventCell
-            cell.initializeCell(viewModel.UpComingMatchArr[indexPath.item])
+            cell.initializeCell(viewModel.UpComingMatchArr[indexPath.item],Image: type.path)
             return cell
             
         }
         else if (collectionView == liveMatch){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as!
             ResultCell
-            cell.initializeCell(viewModel.LiveMatchArr[indexPath.item])
+            cell.initializeCell(viewModel.LiveMatchArr[indexPath.item],Image: type.path)
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClubsCell", for: indexPath) as! ClubsCell
             
-            cell.initializeCell(viewModel.TeamsArr[indexPath.item].teamLogo ?? "")
+            cell.initializeCell(viewModel.TeamsArr[indexPath.item].teamLogo ?? "",Image: type.path)
             return  cell
         }
         

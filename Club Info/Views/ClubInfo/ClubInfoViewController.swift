@@ -37,7 +37,7 @@ class ClubInfoViewController: UIViewController {
                 self?.indicator.isHidden = true
                  if(state){
                     self?.tableVIew.reloadData()
-                     self?.imageClub.sd_setImage(with: URL(string: self?.viewModel.team.teamLogo ??  ""),placeholderImage: UIImage(named: "lastUpdate"))
+                     self?.imageClub.sd_setImage(with: URL(string: self?.viewModel.team.teamLogo ??  ""),placeholderImage: UIImage(named: "football"))
                      self?.clubName.text = self?.viewModel.team.teamName
                      self?.coachName.text = self?.viewModel.team.coaches?[0].coachName
                      if(self?.viewModel.isSaved() ?? false ){

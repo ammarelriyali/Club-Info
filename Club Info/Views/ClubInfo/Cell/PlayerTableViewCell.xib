@@ -53,6 +53,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="backgroundPlayer" destination="b6F-di-vm0" id="Vzx-Um-adY"/>
                 <outlet property="imagePlayer" destination="6Nb-HQ-YNK" id="1K2-Rc-Nws"/>
                 <outlet property="namePlayer" destination="GfH-vz-4MF" id="BJg-Xy-xXo"/>
             </connections>

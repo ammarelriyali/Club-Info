@@ -17,9 +17,9 @@ class ClubsCell: UICollectionViewCell {
         
         
     }
-    func initializeCell(_ imageURL:String){
+    func initializeCell(_ imageURL:String,Image name:String){
         
-        image.sd_setImage(with: URL(string: imageURL),placeholderImage: UIImage(named: "lastUpdate"))
+        image.sd_setImage(with: URL(string: imageURL),placeholderImage: UIImage(named: name))
         
     }
 
