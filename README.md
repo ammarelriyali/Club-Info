@@ -1,5 +1,5 @@
 # Club-Info
-Native mobile IOA application for information about Sports information
+Native mobile IOS application for information about Sports information
 
 ## Features :
 
