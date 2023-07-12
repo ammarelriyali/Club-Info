@@ -15,7 +15,7 @@ Native mobile IOS application for information about Sports information
 
 - Swift
 
-- MVVM architectural patter
+- MVVM architectural pattern
   
 - CoreData
   
